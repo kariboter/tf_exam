@@ -7,11 +7,11 @@ from torch.utils.data import DataLoader
 
 def train(dataset, model, args):
     model.train()
-    dataloader = DataLoader(dataset, batch_size=args.batch_size)
+    dataloader = DataLoader(dataset, batch_size=32)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
-    for epoch in range(args.epochs):
-        state_h, state_c = model.init_state(args.sequence_length)
+    for epoch in range(5):
+        state_h, state_c = model.init_state(args.length)
         for batch, (x, y) in enumerate(dataloader):
             optimizer.zero_grad()
             y_pred, (state_h, state_c) = model(x, (state_h, state_c))

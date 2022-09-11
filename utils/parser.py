@@ -1,12 +1,19 @@
 import argparse
 
-def parameter_parser():
+def parameter_parser_train():
 
     parser = argparse.ArgumentParser(description="Text Generation")
-    parser.add_argument('--sequence_length', type=int, default=5)
-    parser.add_argument("--epochs", dest="epochs", type=int, default=5)
-    parser.add_argument("--batch_size", dest="batch_size", type=int, default=256)
-    parser.add_argument("--load_model", dest="load_model", type=bool, default=False)
+    parser.add_argument('--length', type=int, default=5)
+    parser.add_argument('--input_dir', type=str, default='stdin')
+    parser.add_argument("--input", dest="model", type=str, default='data/textGenerator_model.pt')
+
+    return parser.parse_args()
+
+def parameter_parser_generate():
+
+    parser = argparse.ArgumentParser(description="Text Generation")
+    parser.add_argument('--length', type=int, default=5)
+    parser.add_argument("--prefix", dest="prefix", type=str)
     parser.add_argument("--model", dest="model", type=str, default='data/textGenerator_model.pt')
 
     return parser.parse_args()
