@@ -11,5 +11,5 @@ if __name__ == '__main__':
     model.train()
     train(dataset, model, args)
     #  Load weights
-    model.load_state_dict(torch.load('data/textGenerator_model.pt'))
+    torch.save(model.state_dict(), 'data/textGenerator_model.pt')
     print("model saved")
